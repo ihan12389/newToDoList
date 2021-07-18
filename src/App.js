@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+// 어플리케이션. 프로젝트의 중심부
+import React, { useEffect, useState } from "react";
+import AppRouter from "components/Router";
+import { authService } from "fbase";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [init, setInit] = useState(false);
+  const [userObj, setUserObj] = useState(null);
+
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        setUserObj({
+          displayName: user.displayName,
+          uid: user.uid,
+          updateProfile: (args) => user.updateProfile(args),
+        });
+      } else {
+        setUserObj(null);
+      }
+      setInit(true);
+    });
+  }, []);
+
+  return <>{init ? <AppRouter userObj={userObj} /> : "Initializing..."}</>;
 }
 
 export default App;
