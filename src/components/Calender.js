@@ -9,16 +9,12 @@ const Calender = () => {
   const [calYear, setCalYear] = useState();
   const calBody = useRef();
 
-  let ready_month;
-  let ready_year;
-
   const loadDate = (date, dayIn) => {
     setCalDate(date);
     setCalDay(dayIn);
   };
 
   const ddd = {
-    //월 리스트
     monList: [
       "January",
       "February",
@@ -33,7 +29,6 @@ const Calender = () => {
       "November",
       "December",
     ],
-    //요일 리스트
     dayList: [
       "Sunday",
       "Monday",
@@ -43,17 +38,11 @@ const Calender = () => {
       "Friday",
       "Saturday",
     ],
-    // 일
     today: new Date(),
-    // 월
     monForChange: new Date().getMonth(),
-    // 선택된 일
     activeDate: new Date(),
-    // 현재 월의 첫요일
     getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-    // 현재 월의 마지막 요일
     getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-    //다음 달 정보
     nextMonth: function () {
       let d = new Date();
       d.setDate(1);
@@ -62,7 +51,6 @@ const Calender = () => {
       this.activeDate = d;
       return d;
     },
-    //이전 달 정보
     prevMonth: function () {
       let d = new Date();
       d.setDate(1);
@@ -71,11 +59,8 @@ const Calender = () => {
       this.activeDate = d;
       return d;
     },
-    //두자리 만들기
     addZero: (num) => (num < 10 ? "0" + num : num),
-    //현재 활성화 된 날짜
     activeDTag: null,
-    //인덱스 얻기
     getIndex: function (node) {
       let index = 0;
       while ((node = node.previousElementSibling)) {
@@ -85,23 +70,15 @@ const Calender = () => {
     },
   };
 
-  //입력받은 날짜의 달력 출력
   function loadYYMM(fullDate) {
-    console.log(initi);
-    // 입력받은 날의 연월
     let yy = fullDate.getFullYear();
     let mm = fullDate.getMonth();
 
-    ready_year = yy;
-    ready_month = mm;
-
-    // 첫날, 마지막날
     let firstDay = initi.getFirstDay(yy, mm);
     let lastDay = initi.getLastDay(yy, mm);
 
-    let markToday; // for marking today date
+    let markToday;
 
-    // 입력받은 연월이 현재와 같다면 (현재로)
     if (mm === initi.today.getMonth() && yy === initi.today.getFullYear()) {
       markToday = initi.today.getDate();
     }
@@ -109,7 +86,6 @@ const Calender = () => {
     setCalMonth(initi.monList[mm]);
     setCalYear(yy);
 
-    // 한달 출력
     let trtd = "";
     let startCount;
     let countDay = 0;
@@ -159,13 +135,11 @@ const Calender = () => {
         initi.activeDTag.classList.remove("day-active");
       }
       let day = Number(event.target.textContent);
-      // changeDay(ready_year, ready_month + 1, day);
       loadDate(day, event.target.cellIndex);
 
       event.target.classList.add("day-active");
       initi.activeDTag = event.target;
       initi.activeDate.setDate(day);
-      // reloadToDo();
     }
   };
 
@@ -175,9 +149,7 @@ const Calender = () => {
       setInit(true);
     }
     if (initi !== null) {
-      //오늘의 달력을 그리고
       loadYYMM(initi.today);
-      //오늘의 날짜를 출력해!
       loadDate(initi.today.getDate(), initi.today.getDay());
     }
   }, [init]);

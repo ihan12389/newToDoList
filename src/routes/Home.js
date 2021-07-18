@@ -1,13 +1,14 @@
 // 로그인 후 들어올 수 있는 메인 페이지
 import React, { useEffect, useState } from "react";
-import WriteList from "components/WriteList";
 import ShowList from "components/ShowList";
 import Calender from "components/Calender";
 import { dbService } from "fbase";
 
 const Home = ({ userObj }) => {
   const [docs, setDocs] = useState([]);
+  const [init, setInit] = useState(false);
   const Dates = new Date();
+
   const initObj = {
     text: [],
     createAt: Date.now(),
@@ -19,7 +20,7 @@ const Home = ({ userObj }) => {
     userName: userObj.displayName,
   };
 
-  const init = async () => {
+  const findFunc = async () => {
     await dbService
       .collection("todos")
       .where("creatorId", "==", userObj.uid)
@@ -27,27 +28,28 @@ const Home = ({ userObj }) => {
       .where("createMonth", "==", Dates.getMonth() + 1)
       .where("createDate", "==", Dates.getDate())
       .onSnapshot((snapshot) => {
-        const docArray = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setDocs(docArray);
-        console.log(docArray);
+        if (snapshot.size === 0) {
+          dbService.collection("todos").add(initObj);
+        } else {
+          const docArray = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setDocs(docArray);
+        }
+        setInit(true);
       });
   };
 
   useEffect(() => {
-    init();
-  }, []);
+    if (init === false) {
+      findFunc();
+    }
+  }, [init]);
 
   return (
     <div>
-      {docs.map((doc) => (
-        <ShowList userObj={userObj} docObj={doc} />
-      ))}
-      {docs.length === 0 && (
-        <ShowList userObj={userObj} docObj={[]} initObj={initObj} />
-      )}
+      {init && docs.map((doc) => <ShowList userObj={userObj} docObj={doc} />)}
       <Calender />
     </div>
   );

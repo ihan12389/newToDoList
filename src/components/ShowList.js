@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import { dbService } from "fbase";
 import WriteList from "components/WriteList";
 
-const ShowList = ({ userObj, docObj, initObj }) => {
-  const a = docObj ? docObj.text : initObj.text;
-  const b = docObj ? docObj.finished : initObj.finished;
-  const [todos, setTodos] = useState(a);
-  const [finisheds, setFinisheds] = useState(b);
+const ShowList = ({ userObj, docObj }) => {
+  const [todos, setTodos] = useState(docObj.text);
+  const [finisheds, setFinisheds] = useState(docObj.finished);
 
   const onDeleteClick = async (event) => {
     const {
@@ -14,13 +12,32 @@ const ShowList = ({ userObj, docObj, initObj }) => {
         parentNode: { id },
       },
     } = event;
+
     const ok = window.confirm("Are you sure you wnat to delete this nweet?");
+
     if (ok) {
-      const newText = todos.filter((todo) => {
-        return todo.id !== parseInt(id);
-      });
-      setTodos(newText);
-      await dbService.doc(`todos/${docObj.id}`).update({ text: newText });
+      const {
+        target: {
+          parentNode: {
+            attributes: {
+              name: { value },
+            },
+          },
+        },
+      } = event;
+      if (value === "todos") {
+        const newText = todos.filter((todo) => {
+          return todo.id !== parseInt(id);
+        });
+        setTodos(newText);
+        await dbService.doc(`todos/${docObj.id}`).update({ text: newText });
+      } else if (value === "finisheds") {
+        const newText = finisheds.filter((finished) => {
+          return finished.id !== parseInt(id);
+        });
+        setFinisheds(newText);
+        await dbService.doc(`todos/${docObj.id}`).update({ finished: newText });
+      }
     }
   };
 
@@ -50,9 +67,7 @@ const ShowList = ({ userObj, docObj, initObj }) => {
         return todo.id === parseInt(id);
       });
       text.id = Date.now();
-      console.log(finisheds);
       const newFinished = finisheds.concat(text);
-      console.log(newFinished);
 
       await dbService
         .doc(`todos/${docObj.id}`)
@@ -73,7 +88,6 @@ const ShowList = ({ userObj, docObj, initObj }) => {
   };
 
   useEffect(() => {
-    console.log(docObj);
     if (docObj.length !== 0) {
       dbService.doc(`todos/${docObj.id}`).onSnapshot((doc) => {
         let t = doc.data().text;
@@ -103,9 +117,9 @@ const ShowList = ({ userObj, docObj, initObj }) => {
               <ul className="pending">
                 Pending
                 {todos &&
-                  todos.map((todo) => {
+                  todos.map((todo, index) => {
                     return (
-                      <li key={todo.id} id={todo.id} name="todos">
+                      <li key={index} id={todo.id} name="todos">
                         <span>{todo.text}</span>
                         <button onClick={onDeleteClick}>❌</button>
                         <button onClick={onMoveClick}>✔</button>
@@ -117,9 +131,9 @@ const ShowList = ({ userObj, docObj, initObj }) => {
               <ul className="finished">
                 Finished
                 {finisheds &&
-                  finisheds.map((finished) => {
+                  finisheds.map((finished, index) => {
                     return (
-                      <li key={finished.id} id={finished.id} name="finisheds">
+                      <li key={index} id={finished.id} name="finisheds">
                         <span>{finished.text}</span>
                         <button onClick={onDeleteClick}>❌</button>
                         <button onClick={onMoveClick}>✔</button>
@@ -152,7 +166,7 @@ const ShowList = ({ userObj, docObj, initObj }) => {
           <span>Calender</span>
         </div>
       </div>
-      <WriteList userObj={userObj} docObj={docObj} initObj={initObj} />
+      <WriteList userObj={userObj} docObj={docObj} />
     </>
   );
 };
