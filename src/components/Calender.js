@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const Calender = ({ setDateObj, dateObj }) => {
+const Calender = ({ setDateObj, dateObj, closeCalender }) => {
   const [initi, setIniti] = useState(null);
   const [init, setInit] = useState(false);
   const [calDate, setCalDate] = useState();
@@ -60,10 +60,11 @@ const Calender = ({ setDateObj, dateObj }) => {
       return d;
     },
     clickDate: function (click) {
+      console.log("click이 들어왔다니깐");
       let d = new Date();
       d.setDate(click);
       d.setMonth(this.monForChange);
-      setDateObj(d);
+      this.activeDate = d;
       return d;
     },
     addZero: (num) => (num < 10 ? "0" + num : num),
@@ -137,8 +138,12 @@ const Calender = ({ setDateObj, dateObj }) => {
   };
 
   const clickCalender = (event) => {
+    console.log(event.target);
+    console.log("달력을 click했습니다.");
     if (event.target.classList.contains("day")) {
+      console.log("day를 클릭했어요");
       if (initi.activeDTag) {
+        console.log("active를 지워줍니다.");
         initi.activeDTag.classList.remove("day-active");
       }
 
@@ -152,7 +157,13 @@ const Calender = ({ setDateObj, dateObj }) => {
     }
   };
 
+  const offCalender = () => {
+    setDateObj(initi.activeDate);
+    closeCalender();
+  };
+
   useEffect(() => {
+    console.log("calender를 렌더링합니다.");
     setIniti(ddd);
     if (!init) {
       setInit(true);
@@ -164,34 +175,34 @@ const Calender = ({ setDateObj, dateObj }) => {
   }, [init]);
 
   return (
-    <div class="container dp_none">
-      <div class="my-calendar clearfix">
-        <div class="clicked-date">
-          <div class="cal-day">
+    <div className="calender">
+      <div className="my-calendar clearfix">
+        <div className="clicked-date">
+          <div className="cal-day">
             {init ? initi.dayList[calDay] : "initialize..."}
           </div>
-          <div class="cal-date">{calDate}</div>
+          <div className="cal-date">{calDate}</div>
         </div>
-        <div class="calendar-box">
-          <div class="ctr-box clearfix">
+        <div className="calendar-box">
+          <div className="ctr-box clearfix">
             <button
               type="button"
               title="prev"
-              class="btn-cal prev"
+              className="btn-cal prev"
               onClick={clickPrevMonth}
               style={{ width: "100px", height: "100px" }}
             ></button>
-            <span class="cal-month">{calMonth}</span>
-            <span class="cal-year">{calYear}</span>
+            <span className="cal-month">{calMonth} </span>
+            <span className="cal-year"> {calYear}</span>
             <button
               type="button"
               title="next"
-              class="btn-cal next"
+              className="btn-cal next"
               onClick={clickNextMonth}
               style={{ width: "100px", height: "100px" }}
             ></button>
           </div>
-          <table class="cal-table">
+          <table className="cal-table">
             <thead>
               <tr>
                 <th>S</th>
@@ -204,14 +215,16 @@ const Calender = ({ setDateObj, dateObj }) => {
               </tr>
             </thead>
             <tbody
-              class="cal-body"
+              className="cal-body"
               ref={calBody}
               onClick={clickCalender}
             ></tbody>
           </table>
         </div>
       </div>
-      <div class="closeCld">❌</div>
+      <div className="closeCld cursor" onClick={offCalender}>
+        ❌
+      </div>
     </div>
   );
 };

@@ -27,7 +27,7 @@ export default ({ refreshUser, userObj }) => {
   };
 
   return (
-    <div className="container">
+    <div className="profContainer">
       <form onSubmit={onSubmit} className="profileForm">
         <input
           onChange={onChange}
@@ -40,15 +40,15 @@ export default ({ refreshUser, userObj }) => {
         <input
           type="submit"
           value="Update Profile"
-          className="formBtn"
+          className="formBtn cursor"
           style={{
             marginTop: 10,
           }}
         />
       </form>
-      <span>{userObj.displayName}</span>
-      <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
-        Log Out
+      <span className="displayName">{userObj.displayName}님! 환영합니다~</span>
+      <span className="formBtn cursor cancelBtn logOut" onClick={onLogOutClick}>
+        <span>Log Out</span>
       </span>
     </div>
   );

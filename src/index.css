@@ -1,3 +1,4 @@
+/* all */
 *,
 *:before,
 *:after {
@@ -7,20 +8,20 @@
           box-sizing: inherit;
 }
 
-/* basic setting */
+/* basic element setting */
 a {
   text-decoration: none;
   color: inherit;
 }
 
 h1 {
-  font-size: 7em;
+  font-size: 4em;
   margin-bottom: 80px;
-  margin-top: -80px;
+  margin-top: -60px;
   font-family: "Saira Stencil One", cursive;
   font-weight: normal;
   animation: ani1 1s infinite alternate-reverse ease-in-out;
-  color: pink;
+  color: white;
 }
 
 ul, li, ol {
@@ -54,33 +55,43 @@ ul, li, ol {
   position: relative;
 }
 
-html {
-  width: 100%;
-  height: 100%;
-}
-
-.routerContainer > div {
-  width: 100%;
-  height: 100%;
-}
-
-.container {
-  width: 100%;
-  height: 100%;
-  border: 1px solid pink;
-}
-
+/* div area setting */
+html,
 body,
 #root,
 .routerContainer,
 .container {
   width: 100%;
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: white;
+}
+
+.routerContainer {
+  background-color: inherit;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.showContainer,
+.calContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* Home Component Setting */
+.container {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -94,15 +105,11 @@ body,
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: white;
   /* WriteList */
   /* ShowList */
-  /* Calender */
-  /* Title */
 }
 
-body::before,
-#root::before,
-.routerContainer::before,
 .container::before {
   content: "";
   display: block;
@@ -110,15 +117,13 @@ body::before,
   position: absolute;
   top: 0;
   left: 0;
-  width: 1000%;
+  width: 100%;
   height: 100%;
   z-index: -1;
 }
 
-body .modal,
-#root .modal,
-.routerContainer .modal,
 .container .modal {
+  z-index: 3;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -134,16 +139,14 @@ body .modal,
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  position: 0;
+  position: fixed;
   top: 0;
   bottom: 0;
+  left: 0;
   right: 0;
   background-color: #1d1f20;
 }
 
-body .modal .close,
-#root .modal .close,
-.routerContainer .modal .close,
 .container .modal .close {
   position: absolute;
   top: 50px;
@@ -152,16 +155,10 @@ body .modal .close,
   font-size: 2em;
 }
 
-body .modal .h1,
-#root .modal .h1,
-.routerContainer .modal .h1,
 .container .modal .h1 {
   font-size: 3em;
 }
 
-body .modal .modal_form,
-#root .modal .modal_form,
-.routerContainer .modal .modal_form,
 .container .modal .modal_form {
   width: 500px;
   height: 500px;
@@ -183,9 +180,6 @@ body .modal .modal_form,
   opacity: 0.8;
 }
 
-body .modal .modalViewer_video,
-#root .modal .modalViewer_video,
-.routerContainer .modal .modalViewer_video,
 .container .modal .modalViewer_video {
   width: 100%;
   height: 100%;
@@ -196,9 +190,6 @@ body .modal .modalViewer_video,
   opacity: 1;
 }
 
-body .modal .block_mouse,
-#root .modal .block_mouse,
-.routerContainer .modal .block_mouse,
 .container .modal .block_mouse {
   width: 100%;
   height: 100%;
@@ -207,9 +198,6 @@ body .modal .block_mouse,
   left: 0;
 }
 
-body .modal .modal_h2,
-#root .modal .modal_h2,
-.routerContainer .modal .modal_h2,
 .container .modal .modal_h2 {
   margin-top: -160px;
   margin-bottom: 60px;
@@ -219,9 +207,6 @@ body .modal .modal_h2,
   color: #ffeaee;
 }
 
-body .modal .modal_input,
-#root .modal .modal_input,
-.routerContainer .modal .modal_input,
 .container .modal .modal_input {
   border: none;
   outline: none;
@@ -235,17 +220,12 @@ body .modal .modal_input,
   color: white;
 }
 
-body .modal .modal_input:focus,
-#root .modal .modal_input:focus,
-.routerContainer .modal .modal_input:focus,
 .container .modal .modal_input:focus {
   animation: opacity-0-to-1 0.5s infinite alternate-reverse linear;
 }
 
-body .wrap,
-#root .wrap,
-.routerContainer .wrap,
 .container .wrap {
+  z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -257,11 +237,9 @@ body .wrap,
       -ms-flex-align: center;
           align-items: center;
   color: white;
+  background-color: pink;
 }
 
-body .wrap .write,
-#root .wrap .write,
-.routerContainer .wrap .write,
 .container .wrap .write {
   margin: 50px 0;
   padding: 1em 2em;
@@ -274,9 +252,6 @@ body .wrap .write,
   overflow: hidden;
 }
 
-body .wrap .write:before,
-#root .wrap .write:before,
-.routerContainer .wrap .write:before,
 .container .wrap .write:before {
   content: "";
   background-color: #dc4a38;
@@ -293,25 +268,16 @@ body .wrap .write:before,
           transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
 }
 
-body .wrap .write:hover:before,
-#root .wrap .write:hover:before,
-.routerContainer .wrap .write:hover:before,
 .container .wrap .write:hover:before {
   top: -68%;
   left: -8%;
 }
 
-body .wrap .write:hover span,
-#root .wrap .write:hover span,
-.routerContainer .wrap .write:hover span,
 .container .wrap .write:hover span {
   -webkit-transform: scale(1.3);
           transform: scale(1.3);
 }
 
-body .wrap .write span,
-#root .wrap .write span,
-.routerContainer .wrap .write span,
 .container .wrap .write span {
   display: inline-block;
   font-family: "Saira Stencil One", cursive;
@@ -324,9 +290,6 @@ body .wrap .write span,
           transform: scale();
 }
 
-body .wrap .content_wrap,
-#root .wrap .content_wrap,
-.routerContainer .wrap .content_wrap,
 .container .wrap .content_wrap {
   width: 100%;
   display: -webkit-box;
@@ -340,20 +303,11 @@ body .wrap .content_wrap,
           justify-content: space-evenly;
 }
 
-body .wrap .content_wrap .toDoList,
-#root .wrap .content_wrap .toDoList,
-.routerContainer .wrap .content_wrap .toDoList,
 .container .wrap .content_wrap .toDoList {
   padding: 40px;
   font-size: 20px;
 }
 
-body .wrap .content_wrap .toDoList .x_btn,
-body .wrap .content_wrap .toDoList .f_btn,
-#root .wrap .content_wrap .toDoList .x_btn,
-#root .wrap .content_wrap .toDoList .f_btn,
-.routerContainer .wrap .content_wrap .toDoList .x_btn,
-.routerContainer .wrap .content_wrap .toDoList .f_btn,
 .container .wrap .content_wrap .toDoList .x_btn,
 .container .wrap .content_wrap .toDoList .f_btn {
   margin-left: 10px;
@@ -365,30 +319,15 @@ body .wrap .content_wrap .toDoList .f_btn,
   color: white;
 }
 
-body .wrap .content_wrap .toDoList .finished,
-#root .wrap .content_wrap .toDoList .finished,
-.routerContainer .wrap .content_wrap .toDoList .finished,
 .container .wrap .content_wrap .toDoList .finished {
   margin-top: 20px;
 }
 
-body .wrap .content_wrap .toDoList .pending_li,
-body .wrap .content_wrap .toDoList .finished_li,
-#root .wrap .content_wrap .toDoList .pending_li,
-#root .wrap .content_wrap .toDoList .finished_li,
-.routerContainer .wrap .content_wrap .toDoList .pending_li,
-.routerContainer .wrap .content_wrap .toDoList .finished_li,
 .container .wrap .content_wrap .toDoList .pending_li,
 .container .wrap .content_wrap .toDoList .finished_li {
   margin: 10px 0 10px 1em;
 }
 
-body .wrap .content_wrap .toDoList .pending,
-body .wrap .content_wrap .toDoList .finished,
-#root .wrap .content_wrap .toDoList .pending,
-#root .wrap .content_wrap .toDoList .finished,
-.routerContainer .wrap .content_wrap .toDoList .pending,
-.routerContainer .wrap .content_wrap .toDoList .finished,
 .container .wrap .content_wrap .toDoList .pending,
 .container .wrap .content_wrap .toDoList .finished {
   font-size: 1.5em;
@@ -396,21 +335,12 @@ body .wrap .content_wrap .toDoList .finished,
   font-weight: normal;
 }
 
-body .wrap .content_wrap .toDoList .pending_li,
-body .wrap .content_wrap .toDoList .finished_li,
-#root .wrap .content_wrap .toDoList .pending_li,
-#root .wrap .content_wrap .toDoList .finished_li,
-.routerContainer .wrap .content_wrap .toDoList .pending_li,
-.routerContainer .wrap .content_wrap .toDoList .finished_li,
 .container .wrap .content_wrap .toDoList .pending_li,
 .container .wrap .content_wrap .toDoList .finished_li {
   font-size: 0.8em;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-body .wrap .content_wrap .movieViewer,
-#root .wrap .content_wrap .movieViewer,
-.routerContainer .wrap .content_wrap .movieViewer,
 .container .wrap .content_wrap .movieViewer {
   padding: 20px;
   display: -webkit-box;
@@ -428,9 +358,6 @@ body .wrap .content_wrap .movieViewer,
           align-items: center;
 }
 
-body .wrap .content_wrap .movieViewer h2,
-#root .wrap .content_wrap .movieViewer h2,
-.routerContainer .wrap .content_wrap .movieViewer h2,
 .container .wrap .content_wrap .movieViewer h2 {
   margin-bottom: 20px;
   font-family: "Saira Stencil One", cursive;
@@ -438,74 +365,205 @@ body .wrap .content_wrap .movieViewer h2,
   font-size: 1.7em;
 }
 
-body .wrap .content_wrap .movieViewer .movieViewer_video,
-#root .wrap .content_wrap .movieViewer .movieViewer_video,
-.routerContainer .wrap .content_wrap .movieViewer .movieViewer_video,
 .container .wrap .content_wrap .movieViewer .movieViewer_video {
   display: none;
   border-radius: 20px;
 }
 
-body .wrap .content_wrap .movieViewer .movieViewer_default,
-#root .wrap .content_wrap .movieViewer .movieViewer_default,
-.routerContainer .wrap .content_wrap .movieViewer .movieViewer_default,
 .container .wrap .content_wrap .movieViewer .movieViewer_default {
   display: none;
   font-size: 10em;
 }
 
-body .wrap .openCld,
-#root .wrap .openCld,
-.routerContainer .wrap .openCld,
-.container .wrap .openCld {
+.openCld {
+  cursor: pointer;
+  background: rgba(245, 115, 82, 0.8);
+  -webkit-box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
+          box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
+  border: 2px solid #fff;
+  border-radius: 50px;
   position: absolute;
   bottom: 50px;
   right: 100px;
-  background: rgba(245, 115, 82, 0.8);
   padding: 15px 30px;
-  border: 2px solid #fff;
-  border-radius: 50px;
   -webkit-transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
           transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
-  -webkit-box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
-          box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
-  cursor: pointer;
 }
 
-body .wrap .openCld span,
-#root .wrap .openCld span,
-.routerContainer .wrap .openCld span,
-.container .wrap .openCld span {
+.openCld span {
+  display: inline-block;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+  color: white;
   -webkit-transition: all 0.35s 0.35s;
   transition: all 0.35s 0.35s;
   -webkit-transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
           transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
   -webkit-transform: scale();
           transform: scale();
-  display: inline-block;
-  font-family: "Saira Stencil One", cursive;
-  font-weight: normal;
 }
 
-body .wrap .openCld:hover span,
-#root .wrap .openCld:hover span,
-.routerContainer .wrap .openCld:hover span,
-.container .wrap .openCld:hover span {
+.openCld:hover span {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
 }
 
-body .title,
-#root .title,
-.routerContainer .title,
-.container .title {
-  display: none;
+/* Calender */
+.calContainer .calender {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #00000069;
+}
+
+.calContainer .calender .my-calendar {
+  width: 700px;
+  cursor: default;
+  border: 1px solid #ddd;
+  margin: 30px;
+  padding: 20px 20px 10px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.calContainer .calender .my-calendar .clicked-date {
+  border-radius: 25px;
+  margin-top: 36px;
+  float: left;
+  width: 42%;
+  padding: 46px 0 26px;
+  background: #ddd;
+}
+
+.calContainer .calender .my-calendar .clicked-date .cal-day {
+  color: #ff5f77;
+  font-size: 24px;
+}
+
+.calContainer .calender .my-calendar .clicked-date .cal-date {
+  color: rgba(245, 115, 82, 0.8);
+  font-size: 130px;
+}
+
+.calContainer .calender .my-calendar .calendar-box {
+  float: right;
+  width: 58%;
+  color: white;
+  font-weight: 600;
+}
+
+.calContainer .calender .my-calendar .calendar-box .ctr-box {
+  padding: 0 16px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.calContainer .calender .my-calendar .calendar-box .ctr-box .btn-cal {
+  color: white;
+  position: relative;
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
+  font-size: 1.5em;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.calContainer .calender .my-calendar .calendar-box .ctr-box .btn-cal:after {
+  content: '<';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 25px;
+  font-weight: bold;
+}
+
+.calContainer .calender .my-calendar .calendar-box .ctr-box .btn-cal.next {
+  float: right;
+}
+
+.calContainer .calender .my-calendar .calendar-box .ctr-box .btn-cal.next:after {
+  content: ">";
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table {
+  width: 100%;
+  color: white;
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table th {
+  width: 14.2857%;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table td {
+  padding: 3px 0;
+  height: 50px;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table td.day {
+  position: relative;
+  cursor: pointer;
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table td.today {
+  background: #ffd255;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table td.day-active {
+  background: #ff8585;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.calContainer .calender .my-calendar .calendar-box .cal-table td.has-event:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: #FFC107;
+}
+
+.calContainer .calender .closeCld {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  font-size: 2em;
+  z-index: 10;
 }
 
 /* gradient setting */
 .gradient_border {
   --borderWidth: 6px;
+  background: #1d1f20;
+  position: relative;
   border-radius: var(--borderWidth);
+  width: 100%;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -519,31 +577,42 @@ body .title,
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: #1d1f20;
+}
+
+.gradient_border::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  -webkit-animation: animatedgradient 3s ease alternate infinite;
+          animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
 }
 
 /* animation setting */
 @-webkit-keyframes ani1 {
   0% {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
-  }
-  100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 }
 @keyframes ani1 {
   0% {
-    -webkit-transform: scale(0.9);
-            transform: scale(0.9);
-  }
-  100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
   }
 }
 
@@ -563,5 +632,276 @@ body .title,
   100% {
     border-bottom: 5px solid #8181fa;
   }
+}
+
+@-webkit-keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* navigation */
+.navContainer {
+  z-index: 3;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navContainer a {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.navContainer a .navLink {
+  color: #de5151;
+  font-size: 1.5em;
+  font-weight: 600;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+
+.navContainer a .navLink:hover {
+  font-size: 1.55em;
+  line-height: 0.3em;
+  opacity: 0.8;
+}
+
+.profContainer {
+  border: 2px solid tomato;
+  width: 650px;
+  height: 500px;
+  border-radius: 60px;
+  background-color: #fff9db;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profContainer form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profContainer form .formInput {
+  height: 25px;
+  width: 200px;
+  font-size: 1em;
+  font-weight: 550;
+  color: rgba(0, 0, 0, 0.63);
+  margin-right: 1rem;
+  padding: 5px;
+  padding-left: 7px;
+  border-radius: 5px;
+}
+
+.profContainer form .formInput::-webkit-input-placeholder {
+  font-weight: 100;
+  margin-left: 30px;
+}
+
+.profContainer form .formInput:-ms-input-placeholder {
+  font-weight: 100;
+  margin-left: 30px;
+}
+
+.profContainer form .formInput::-ms-input-placeholder {
+  font-weight: 100;
+  margin-left: 30px;
+}
+
+.profContainer form .formInput::placeholder {
+  font-weight: 100;
+  margin-left: 30px;
+}
+
+.profContainer form .formBtn {
+  background-color: #ffb6ad;
+  outline: none;
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 100px;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.profContainer form .formBtn:hover {
+  opacity: 0.7;
+}
+
+.profContainer .displayName {
+  color: tomato;
+  opacity: 0.7;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15px;
+}
+
+.profContainer .formBtn {
+  margin-top: 100px;
+  background-color: #d98156;
+  border-radius: 20px;
+  width: 140px;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  line-height: 2.2;
+  color: white;
+  font-size: 1.5em;
+  border: 2px solid rgba(238, 238, 238, 0.411);
+  overflow: hidden;
+}
+
+.profContainer .formBtn span:first-child {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.profContainer .formBtn span:first-child:hover {
+  -webkit-transform: rotate(540deg) scale(2);
+          transform: rotate(540deg) scale(2);
+}
+
+/* Auth */
+.authContainer {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.authContainer input {
+  all: unset;
+}
+
+.authContainer .authBtns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  max-width: 20rem;
+  margin-bottom: 3rem;
+}
+
+.authContainer .authBtns .authBtn {
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid gray;
+  padding: 0.6rem 0.6rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.authContainer .authForm {
+  max-width: 21.5rem;
+}
+
+.authContainer .authInput {
+  max-width: 20rem;
+  width: 100%;
+  padding: 0.65rem;
+  border: 1px solid gray;
+  border-radius: 30px;
+  background-color: white;
+  margin-bottom: 0.7rem;
+  font-size: 0.75rem;
+  color: black;
+}
+
+.authContainer .authSubmit {
+  text-align: center;
+  background: #40aaff;
+  color: white;
+  margin-top: 0.8rem;
+  cursor: pointer;
+}
+
+.authContainer .authError {
+  color: tomato;
+  text-align: center;
+  font-weight: 500;
+  font-size: 0.75rem;
+}
+
+.authContainer .authSwitch {
+  color: #04aaff;
+  cursor: pointer;
+  margin-top: 0.65rem;
+  margin-bottom: 3.1rem;
+  display: block;
+  font-size: 0.8rem;
+  text-decoration: underline;
 }
 /*# sourceMappingURL=index.css.map */

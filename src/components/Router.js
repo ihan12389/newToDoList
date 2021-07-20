@@ -7,12 +7,17 @@ import Profile from "routes/Profile";
 import Navigation from "components/Navigation";
 
 const AppRouter = ({ userObj, refreshUser }) => {
+  const num = Math.ceil((Math.random().toFixed(2) * 100) % 20) + 1;
+  var sectionStyle = {
+    backgroundImage: `url(${process.env.PUBLIC_URL}img/${num}.jpg)`,
+  };
+
   return (
     <Router>
-      {/* <Navigation /> */}
       <Switch>
         {Boolean(userObj) ? (
-          <div className="routerContainer">
+          <div className="routerContainer" style={sectionStyle}>
+            <Navigation />
             <Route exact path="/">
               <Home userObj={userObj} />
             </Route>

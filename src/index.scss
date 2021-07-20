@@ -1,3 +1,4 @@
+/* all */
 *,
 *:before,
 *:after {
@@ -6,19 +7,19 @@
     box-sizing : inherit;
 }
 
-/* basic setting */
+/* basic element setting */
 a {
     text-decoration : none;
     color : inherit;
 }
 h1 {
-    font-size : 7em;
+    font-size : 4em;
     margin-bottom : 80px;
-    margin-top : -80px;
+    margin-top : -60px;
     font-family : "Saira Stencil One", cursive;
     font-weight: normal;
     animation : ani1 1s infinite alternate-reverse ease-in-out;
-    color : pink;
+    color : white;
 }
 ul,li,ol {
     list-style : none;
@@ -44,40 +45,47 @@ ul,li,ol {
     position : relative;
 }
 
-html {
-    width : 100%;
-    height : 100%;
-}
-
-.routerContainer > div {
-    width : 100%;
-    height : 100%;
-}
-
+/* div area setting */
+html, 
+body, 
+#root, 
+.routerContainer, 
 .container {
     width : 100%;
     height : 100%;
-    border : 1px solid pink;
 }
 
-body, 
-#root,
-.routerContainer,
+.routerContainer {
+    background-color : inherit;
+    background-size : cover;
+    background-repeat : no-repeat;
+    background-position : center;
+    // background-color: #fff9db;
+
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showContainer, 
+.calContainer {
+    width : 100%;
+    height : 100%;
+}
+
+/* Home Component Setting */
 .container {
     width : 100%;
     height : 100%;
 
     font-family : -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-    background-color : white;
-    background-size : cover;
-    background-repeat : no-repeat;
-    background-position : center;
-
     display : flex;
     flex-direction : column;
     justify-content: center;
     align-items: center;
+
+    color : white;
 
     &::before {
         content : "";
@@ -87,12 +95,14 @@ body,
         position : absolute;
         top : 0;
         left : 0;
-        width : 1000%;
+        width : 100%;
         height : 100%;
         z-index : -1;
     }
     /* WriteList */
     .modal {
+        z-index : 3;
+
         width : 100%;
         height : 100%;
 
@@ -102,9 +112,10 @@ body,
         align-items : center;
         flex-direction : column;
 
-        position : 0;
+        position : fixed;
         top:0;
         bottom : 0;
+        left : 0;
         right : 0;
 
         background-color : #1d1f20;
@@ -182,11 +193,13 @@ body,
     }
     /* ShowList */
     .wrap {
+        z-index : 1;
         display : flex;
         // display : none;
         flex-direction: column;
         align-items: center;
         color : white;
+        background-color : pink;
         .write {
             margin: 50px 0;
             padding : 1em 2em;
@@ -299,63 +312,214 @@ body,
                 }
             }
         }
-        .openCld {
-            position: absolute;
-            bottom: 50px;
-            right: 100px;
-            background: rgba(245, 115, 82, 0.8);
-            padding: 15px 30px;
-            border: 2px solid #fff;
-            border-radius: 50px;
-            transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
-            box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
-            cursor: pointer;
-            span {
-                transition: all 0.35s 0.35s;
-                transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
-                transform: scale();
-                display: inline-block;
-                font-family: "Saira Stencil One", cursive;
-                font-weight: normal;
+    }
+}
+
+.openCld {
+    cursor: pointer;
+
+    background: rgba(245, 115, 82, 0.8);
+    box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
+
+    border: 2px solid #fff;
+    border-radius: 50px;
+
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    
+    padding: 15px 30px;
+    
+    transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
+    span {
+        display: inline-block;
+
+        font-family: "Saira Stencil One", cursive;
+        font-weight: normal;
+        color : white;
+
+        transition: all 0.35s 0.35s;
+        transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
+        transform: scale();
+    }
+    &:hover span {
+        transform: scale(1.2);
+    }
+}
+
+/* Calender */
+.calContainer {
+    .calender {
+        position: fixed;
+        top: 0;
+        left: 0;
+        
+        width: 100%;
+        height: 100%;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        background: #00000069;
+
+        .my-calendar {
+            width: 700px;
+            
+            cursor: default;
+            
+            border: 1px solid #ddd;
+            
+            margin: 30px;
+            padding: 20px 20px 10px;
+            
+            
+            text-align: center;
+            font-weight: 800;
+            
+            .clicked-date {
+                border-radius: 25px;
+                margin-top: 36px;
+                float: left;
+                width: 42%;
+                padding: 46px 0 26px;
+                background: #ddd;
+                .cal-day {
+                    color :#ff5f77;
+                    font-size: 24px;
+                }
+                .cal-date {
+                    color :rgba(245, 115, 82, 0.8);
+                    font-size: 130px;
+                }
             }
-            &:hover span {
-                transform: scale(1.2);
+            .calendar-box {
+                float: right;
+                width: 58%;
+                color : white;
+                font-weight : 600;
+                // padding-left: 30px;
+                .ctr-box {
+                    padding: 0 16px;
+                    margin-bottom: 20px;
+                    font-size: 20px;
+                    .btn-cal {
+                        color: white;
+                        position: relative;
+                        float: left;
+                        width: 25px;
+                        height: 25px;
+                        margin-top: 5px;
+                        font-size: 1.5em;
+                        cursor: pointer;
+                        border: none;
+                    background: none;
+                    &:after {
+                        content: '<';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        line-height: 25px;
+                        font-weight: bold;
+                        // font-size: 20px;
+                    }
+                    &.next {
+                        float: right;
+                        &:after {
+                            content: ">";
+                        }
+                    }
+                }
+            }
+            .cal-table {
+                width: 100%;
+                color : white;
+                th {
+                    width: 14.2857%;
+                    padding-bottom: 5px;
+                    font-size: 16px;
+                    font-weight: 900;
+                }
+                td {
+                    padding: 3px 0;
+                    height: 50px;
+                    font-size: 15px;
+                    vertical-align: middle;
+                    &.day {
+                        position: relative;
+                        cursor: pointer;
+                    }
+                    &.today {
+                        background: #ffd255;
+                        border-radius: 50%;
+                        color: #fff;
+                    }
+                    &.day-active {
+                        background: #ff8585;
+                        border-radius: 50%;
+                        color: #fff;
+                    }
+                    &.has-event:after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        height: 4px;
+                        background: #FFC107;
+                    }
+                }
             }
         }
     }
-    /* Calender */
-    .calender{}
-    /* Title */
-    .title {
-        display : none;
+    .closeCld {
+        position: absolute;
+        top: 100px;
+        right: 50px;
+        font-size: 2em;
+        z-index: 10;
+    }
     }
 }
 
 /* gradient setting */
 .gradient_border {
-    --borderWidth : 6px;
-    border-radius : var(--borderWidth);
-
-    display : flex;
+    --borderWidth: 6px;
+    background: #1d1f20;
+    position: relative;
+    border-radius: var(--borderWidth);
+    width: 100%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    position : relative;
-
-    width : 100%;
-    height : 100%;
-
-    background : #1d1f20;
+    &::after{
+        content: "";
+        position: absolute;
+        top: calc(-1 * var(--borderWidth));
+        left: calc(-1 * var(--borderWidth));
+        height: calc(100% + var(--borderWidth) * 2);
+        width: calc(100% + var(--borderWidth) * 2);
+        background: linear-gradient( 60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+        border-radius: calc(2 * var(--borderWidth));
+        z-index: -1;
+        animation: animatedgradient 3s ease alternate infinite;
+        background-size: 300% 300%;
+    }
 }
 
 /* animation setting */
 @keyframes ani1 {
     0% {
-        transform: scale(0.9);
+        transform: scale(1);
     }
     100% {
-        transform: scale(1);
+        transform: scale(1.2);
     }
 }
 
@@ -367,3 +531,222 @@ body,
         border-bottom: 5px solid #8181fa;
     }
 }
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+        // transform: scale(0.1);
+    }
+    50% {
+        background-position: 100% 50%;
+        // transform: scale(0.5);
+    }
+    100% {
+        background-position: 0% 50%;
+        // transform: scale(1.5);
+    }
+}
+
+/* navigation */
+.navContainer {
+    z-index : 3;
+    width : 100%;
+    height : 80px;
+
+    position : fixed;
+    top:0;
+    left : 0;
+
+    background-color : inherit;
+    
+    display : flex;
+    justify-content: center;
+    align-items: center;
+
+    a{
+        margin-left : 20px;
+        margin-right : 20px;
+        .navLink {
+            color : #de5151;
+            font-size : 1.5em;
+            font-weight : 600;
+            font-family : "Saira Stencil One", cursive;
+            font-weight: normal;
+
+            transition : all 0.15s;
+            &:hover {
+                font-size : 1.55em;
+                line-height : 0.3em;
+
+                opacity : 0.8;
+            }
+        }
+    }
+}
+
+.profContainer {
+    border : 2px solid tomato;
+    width : 650px;
+    height : 500px;
+    border-radius: 60px;
+    background-color: #fff9db;
+    
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    form {
+        display : flex;
+        justify-content: center;
+        align-items: center;
+
+        .formInput {
+            height: 25px;
+            width : 200px;
+
+            font-size : 1em;
+            font-weight: 550;
+
+            color :rgba(0, 0, 0, 0.63);
+
+            margin-right : 1rem;
+
+            padding : 5px;
+            padding-left : 7px;
+
+            border-radius: 5px;
+            &::placeholder {
+                font-weight : 100;
+                margin-left : 30px;
+            }
+        }
+        .formBtn {
+            background-color : #ffb6ad;
+
+            outline : none;
+            border:none;
+
+            width : 100px;
+            height: 40px;
+
+            border-radius: 100px;
+            font-size : 15px;
+
+            margin-bottom : 5px;
+            &:hover {
+                opacity : 0.7;
+            }
+        }
+    }
+
+    .displayName {
+        color : tomato;
+        opacity : 0.7;
+        font-size : 18px;
+        font-weight: 600;
+
+        margin-top : 15px;
+    }
+
+    .formBtn {
+        margin-top : 100px;
+        background-color : #d98156;
+        border-radius: 20px;
+        width : 140px;
+        height : 60px;
+        display : flex;
+        justify-content: center;
+        align-items: center;
+        text-align : center;
+        line-height: 2.2;
+        color : white;
+        font-size : 1.5em;
+        border : 2px solid rgba(238, 238, 238, 0.411);
+        overflow: hidden;
+        span:first-child { 
+            // background-color: white;
+            transition : all 0.5s;
+            &:hover {
+                transform: rotate(540deg) scale(2);
+            }
+        }
+    }
+}
+
+/* Auth */
+.authContainer {
+    input {
+        all : unset;
+    }
+
+    width : 100%;
+    height : 100vh;
+
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .authBtns {
+        display : flex;
+        justify-content: space-between;
+    
+        width : 100%;
+        max-width : 20rem;
+        margin-bottom : 3rem;
+        .authBtn {
+            cursor : pointer;
+
+            border-radius: 20px;
+            border : 1px solid gray;
+
+            padding : 0.6rem 0.6rem;
+
+            font-size : 0.75rem;
+            text-align : center;
+        }
+    }
+
+    .authForm {
+        max-width : 21.5rem;
+    }
+
+    .authInput {
+        max-width : 20rem;
+        width : 100%;
+        padding : 0.65rem;
+        border : 1px solid gray;
+        border-radius : 30px;
+        background-color : rgba(255,255,255,1);
+        margin-bottom : 0.7rem;
+        font-size : 0.75rem;
+        color : black;
+    }
+
+    .authSubmit {
+        text-align : center;
+        background : #40aaff;
+        color : white;
+        margin-top : 0.8rem;
+        cursor : pointer;
+    }
+
+    .authError {
+        color : tomato;
+        text-align : center;
+        font-weight: 500;
+        font-size : 0.75rem;
+    }
+
+    .authSwitch {
+        color : #04aaff;
+        cursor : pointer;
+        margin-top : 0.65rem;
+        margin-bottom : 3.1rem;
+        display : block;
+        font-size : 0.8rem;
+        text-decoration : underline;
+    }
+}
+
