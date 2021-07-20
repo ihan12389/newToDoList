@@ -22,7 +22,26 @@ function App() {
     });
   }, []);
 
-  return <>{init ? <AppRouter userObj={userObj} /> : "Initializing..."}</>;
+  const refreshUser = () => {
+    const user = authService.currentUser;
+    setUserObj({
+      displayName: user.displayName,
+      uid: user.uid,
+      updateProfile: (args) => user.updateProfile(args),
+    });
+  };
+
+  return (
+    <>
+      {init ? (
+        <>
+        <AppRouter userObj={userObj} refreshUser={refreshUser} />
+        </>
+      ) : (
+        "Initializing..."
+      )}
+    </>
+  );
 }
 
 export default App;

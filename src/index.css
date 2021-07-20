@@ -1,0 +1,567 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/* basic setting */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: 7em;
+  margin-bottom: 80px;
+  margin-top: -80px;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+  animation: ani1 1s infinite alternate-reverse ease-in-out;
+  color: pink;
+}
+
+ul, li, ol {
+  list-style: none;
+}
+
+/* aditialnal setting */
+.outline {
+  outline: 1px solid white;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.dp_none {
+  display: none !important;
+}
+
+.dp_block {
+  display: block !important;
+}
+
+.dp_flex {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.pos_rel {
+  position: relative;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+.routerContainer > div {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid pink;
+}
+
+body,
+#root,
+.routerContainer,
+.container {
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* WriteList */
+  /* ShowList */
+  /* Calender */
+  /* Title */
+}
+
+body::before,
+#root::before,
+.routerContainer::before,
+.container::before {
+  content: "";
+  display: block;
+  background: #00000031;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1000%;
+  height: 100%;
+  z-index: -1;
+}
+
+body .modal,
+#root .modal,
+.routerContainer .modal,
+.container .modal {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #1d1f20;
+}
+
+body .modal .close,
+#root .modal .close,
+.routerContainer .modal .close,
+.container .modal .close {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  z-index: 10;
+  font-size: 2em;
+}
+
+body .modal .h1,
+#root .modal .h1,
+.routerContainer .modal .h1,
+.container .modal .h1 {
+  font-size: 3em;
+}
+
+body .modal .modal_form,
+#root .modal .modal_form,
+.routerContainer .modal .modal_form,
+.container .modal .modal_form {
+  width: 500px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+body .modal .modalViewer_video,
+#root .modal .modalViewer_video,
+.routerContainer .modal .modalViewer_video,
+.container .modal .modalViewer_video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 1;
+}
+
+body .modal .block_mouse,
+#root .modal .block_mouse,
+.routerContainer .modal .block_mouse,
+.container .modal .block_mouse {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body .modal .modal_h2,
+#root .modal .modal_h2,
+.routerContainer .modal .modal_h2,
+.container .modal .modal_h2 {
+  margin-top: -160px;
+  margin-bottom: 60px;
+  font-size: 4em;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+  color: #ffeaee;
+}
+
+body .modal .modal_input,
+#root .modal .modal_input,
+.routerContainer .modal .modal_input,
+.container .modal .modal_input {
+  border: none;
+  outline: none;
+  border-bottom: 5px solid #8181fa;
+  border-radius: 5px;
+  width: 300px;
+  height: 100px;
+  text-align: center;
+  font-size: 30px;
+  background-color: inherit;
+  color: white;
+}
+
+body .modal .modal_input:focus,
+#root .modal .modal_input:focus,
+.routerContainer .modal .modal_input:focus,
+.container .modal .modal_input:focus {
+  animation: opacity-0-to-1 0.5s infinite alternate-reverse linear;
+}
+
+body .wrap,
+#root .wrap,
+.routerContainer .wrap,
+.container .wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+body .wrap .write,
+#root .wrap .write,
+.routerContainer .wrap .write,
+.container .wrap .write {
+  margin: 50px 0;
+  padding: 1em 2em;
+  width: 100px;
+  border: 2px solid #afafaf;
+  border-radius: 100px;
+  -webkit-box-shadow: 9px 5px 14px 2px rgba(255, 255, 255, 0.45);
+          box-shadow: 9px 5px 14px 2px rgba(255, 255, 255, 0.45);
+  text-align: center;
+  overflow: hidden;
+}
+
+body .wrap .write:before,
+#root .wrap .write:before,
+.routerContainer .wrap .write:before,
+.container .wrap .write:before {
+  content: "";
+  background-color: #dc4a38;
+  width: 120%;
+  height: 254%;
+  position: absolute;
+  top: 46%;
+  left: -90%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  -webkit-transition: all 0.35s;
+  transition: all 0.35s;
+  -webkit-transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
+          transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
+}
+
+body .wrap .write:hover:before,
+#root .wrap .write:hover:before,
+.routerContainer .wrap .write:hover:before,
+.container .wrap .write:hover:before {
+  top: -68%;
+  left: -8%;
+}
+
+body .wrap .write:hover span,
+#root .wrap .write:hover span,
+.routerContainer .wrap .write:hover span,
+.container .wrap .write:hover span {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+}
+
+body .wrap .write span,
+#root .wrap .write span,
+.routerContainer .wrap .write span,
+.container .wrap .write span {
+  display: inline-block;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+  -webkit-transition: all 0.35s 0.35s;
+  transition: all 0.35s 0.35s;
+  -webkit-transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
+          transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
+  -webkit-transform: scale();
+          transform: scale();
+}
+
+body .wrap .content_wrap,
+#root .wrap .content_wrap,
+.routerContainer .wrap .content_wrap,
+.container .wrap .content_wrap {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+body .wrap .content_wrap .toDoList,
+#root .wrap .content_wrap .toDoList,
+.routerContainer .wrap .content_wrap .toDoList,
+.container .wrap .content_wrap .toDoList {
+  padding: 40px;
+  font-size: 20px;
+}
+
+body .wrap .content_wrap .toDoList .x_btn,
+body .wrap .content_wrap .toDoList .f_btn,
+#root .wrap .content_wrap .toDoList .x_btn,
+#root .wrap .content_wrap .toDoList .f_btn,
+.routerContainer .wrap .content_wrap .toDoList .x_btn,
+.routerContainer .wrap .content_wrap .toDoList .f_btn,
+.container .wrap .content_wrap .toDoList .x_btn,
+.container .wrap .content_wrap .toDoList .f_btn {
+  margin-left: 10px;
+  background-color: inherit;
+  outline: none;
+  border: none;
+  font-size: 23px;
+  font-weight: 600;
+  color: white;
+}
+
+body .wrap .content_wrap .toDoList .finished,
+#root .wrap .content_wrap .toDoList .finished,
+.routerContainer .wrap .content_wrap .toDoList .finished,
+.container .wrap .content_wrap .toDoList .finished {
+  margin-top: 20px;
+}
+
+body .wrap .content_wrap .toDoList .pending_li,
+body .wrap .content_wrap .toDoList .finished_li,
+#root .wrap .content_wrap .toDoList .pending_li,
+#root .wrap .content_wrap .toDoList .finished_li,
+.routerContainer .wrap .content_wrap .toDoList .pending_li,
+.routerContainer .wrap .content_wrap .toDoList .finished_li,
+.container .wrap .content_wrap .toDoList .pending_li,
+.container .wrap .content_wrap .toDoList .finished_li {
+  margin: 10px 0 10px 1em;
+}
+
+body .wrap .content_wrap .toDoList .pending,
+body .wrap .content_wrap .toDoList .finished,
+#root .wrap .content_wrap .toDoList .pending,
+#root .wrap .content_wrap .toDoList .finished,
+.routerContainer .wrap .content_wrap .toDoList .pending,
+.routerContainer .wrap .content_wrap .toDoList .finished,
+.container .wrap .content_wrap .toDoList .pending,
+.container .wrap .content_wrap .toDoList .finished {
+  font-size: 1.5em;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+}
+
+body .wrap .content_wrap .toDoList .pending_li,
+body .wrap .content_wrap .toDoList .finished_li,
+#root .wrap .content_wrap .toDoList .pending_li,
+#root .wrap .content_wrap .toDoList .finished_li,
+.routerContainer .wrap .content_wrap .toDoList .pending_li,
+.routerContainer .wrap .content_wrap .toDoList .finished_li,
+.container .wrap .content_wrap .toDoList .pending_li,
+.container .wrap .content_wrap .toDoList .finished_li {
+  font-size: 0.8em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body .wrap .content_wrap .movieViewer,
+#root .wrap .content_wrap .movieViewer,
+.routerContainer .wrap .content_wrap .movieViewer,
+.container .wrap .content_wrap .movieViewer {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .wrap .content_wrap .movieViewer h2,
+#root .wrap .content_wrap .movieViewer h2,
+.routerContainer .wrap .content_wrap .movieViewer h2,
+.container .wrap .content_wrap .movieViewer h2 {
+  margin-bottom: 20px;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+  font-size: 1.7em;
+}
+
+body .wrap .content_wrap .movieViewer .movieViewer_video,
+#root .wrap .content_wrap .movieViewer .movieViewer_video,
+.routerContainer .wrap .content_wrap .movieViewer .movieViewer_video,
+.container .wrap .content_wrap .movieViewer .movieViewer_video {
+  display: none;
+  border-radius: 20px;
+}
+
+body .wrap .content_wrap .movieViewer .movieViewer_default,
+#root .wrap .content_wrap .movieViewer .movieViewer_default,
+.routerContainer .wrap .content_wrap .movieViewer .movieViewer_default,
+.container .wrap .content_wrap .movieViewer .movieViewer_default {
+  display: none;
+  font-size: 10em;
+}
+
+body .wrap .openCld,
+#root .wrap .openCld,
+.routerContainer .wrap .openCld,
+.container .wrap .openCld {
+  position: absolute;
+  bottom: 50px;
+  right: 100px;
+  background: rgba(245, 115, 82, 0.8);
+  padding: 15px 30px;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  -webkit-transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
+          transition-timing-function: cubic-bezier(0.31 -0.105 0.13 1.59);
+  -webkit-box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
+          box-shadow: 3px 3px 12px 1px rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+
+body .wrap .openCld span,
+#root .wrap .openCld span,
+.routerContainer .wrap .openCld span,
+.container .wrap .openCld span {
+  -webkit-transition: all 0.35s 0.35s;
+  transition: all 0.35s 0.35s;
+  -webkit-transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
+          transition-timing-function: cubic-bezier(0.31 -0.105 0.43 1.59);
+  -webkit-transform: scale();
+          transform: scale();
+  display: inline-block;
+  font-family: "Saira Stencil One", cursive;
+  font-weight: normal;
+}
+
+body .wrap .openCld:hover span,
+#root .wrap .openCld:hover span,
+.routerContainer .wrap .openCld:hover span,
+.container .wrap .openCld:hover span {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+body .title,
+#root .title,
+.routerContainer .title,
+.container .title {
+  display: none;
+}
+
+/* gradient setting */
+.gradient_border {
+  --borderWidth: 6px;
+  border-radius: var(--borderWidth);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #1d1f20;
+}
+
+/* animation setting */
+@-webkit-keyframes ani1 {
+  0% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes ani1 {
+  0% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes opacity-0-to-1 {
+  0% {
+    border-bottom: 5px solid transparent;
+  }
+  100% {
+    border-bottom: 5px solid #8181fa;
+  }
+}
+
+@keyframes opacity-0-to-1 {
+  0% {
+    border-bottom: 5px solid transparent;
+  }
+  100% {
+    border-bottom: 5px solid #8181fa;
+  }
+}
+/*# sourceMappingURL=index.css.map */

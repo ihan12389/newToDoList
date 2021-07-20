@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { dbService } from "fbase";
 import WriteList from "components/WriteList";
 
-const ShowList = ({ userObj, docObj }) => {
+const ShowList = ({ userObj, docObj, dateObj }) => {
   const [todos, setTodos] = useState(docObj.text);
   const [finisheds, setFinisheds] = useState(docObj.finished);
+  const [showModal, setShowModal] = useState(false);
+
+  const movie = useRef();
+  const movieVideo = useRef();
+  const movieDefault = useRef();
 
   const onDeleteClick = async (event) => {
     const {
@@ -47,7 +52,6 @@ const ShowList = ({ userObj, docObj }) => {
         parentNode: { id },
       },
     } = event;
-
     const {
       target: {
         parentNode: {
@@ -57,18 +61,17 @@ const ShowList = ({ userObj, docObj }) => {
         },
       },
     } = event;
-
     if (value === "todos") {
       const newTodo = todos.filter((todo) => {
         return todo.id !== parseInt(id);
       });
-
       const text = todos.filter((todo) => {
         return todo.id === parseInt(id);
       });
       text.id = Date.now();
       const newFinished = finisheds.concat(text);
-
+      setTodos(newTodo);
+      setFinisheds(newFinished);
       await dbService
         .doc(`todos/${docObj.id}`)
         .update({ text: newTodo, finished: newFinished });
@@ -81,10 +84,16 @@ const ShowList = ({ userObj, docObj }) => {
       });
       finished.id = Date.now();
       const newTodo = todos.concat(finished);
+      setTodos(newTodo);
+      setFinisheds(newFinished);
       await dbService
         .doc(`todos/${docObj.id}`)
         .update({ text: newTodo, finished: newFinished });
     }
+  };
+
+  const offModal = () => {
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -98,75 +107,133 @@ const ShowList = ({ userObj, docObj }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (!showModal) {
+      if (todos.length === 0 && finisheds.length === 0) {
+        movieVideo.current.contentWindow.postMessage(
+          '{"event":"command","func":"stopVideo","args":""}',
+          "*"
+        );
+        movieDefault.current.classList.add("dp_block");
+        movieVideo.current.classList.remove("dp_block");
+      } else {
+        movieVideo.current.classList.add("dp_block");
+        movieDefault.current.classList.remove("dp_block");
+      }
+    }
+  }, [showModal]);
+
+  useEffect(() => {
+    if (todos.length === 0 && finisheds.length === 0) {
+      setShowModal(true);
+    } else {
+      setShowModal(false);
+    }
+  }, [todos]);
+
   return (
     <>
-      <h1>TO DO LIST TODAY!</h1>
-      {/* 전체 컨테이너 */}
-      <div className="wrap">
-        {/* 효과용 중간 컨테이너 */}
-        <div className="gradient_border">
-          {/* Write 효과용 글씨 */}
-          <div className="write cursor pos_rel">
-            <span className="pos_rel">Write</span>
-          </div>
-          {/* 콘텐트 랩 */}
-          <div className="content_wrap">
-            {/* 투두 리스트 */}
-            <div className="toDoList">
-              {/* 할 일! */}
-              <ul className="pending">
-                Pending
-                {todos &&
-                  todos.map((todo, index) => {
-                    return (
-                      <li key={index} id={todo.id} name="todos">
-                        <span>{todo.text}</span>
-                        <button onClick={onDeleteClick}>❌</button>
-                        <button onClick={onMoveClick}>✔</button>
-                      </li>
-                    );
-                  })}
-              </ul>
-              {/* 한 일! */}
-              <ul className="finished">
-                Finished
-                {finisheds &&
-                  finisheds.map((finished, index) => {
-                    return (
-                      <li key={index} id={finished.id} name="finisheds">
-                        <span>{finished.text}</span>
-                        <button onClick={onDeleteClick}>❌</button>
-                        <button onClick={onMoveClick}>✔</button>
-                      </li>
-                    );
-                  })}
-              </ul>
+      {showModal ? (
+        <WriteList
+          userObj={userObj}
+          docObj={docObj}
+          offModal={(value) => offModal()}
+        />
+      ) : (
+        <div className="container">
+          <h1 className="title">TO DO LIST TODAY!</h1>
+          <div className="wrap" ref={movie}>
+            <div className="gradient_border">
+              <div className="write cursor pos_rel">
+                <span className="pos_rel" onClick={() => setShowModal(true)}>
+                  Write
+                </span>
+              </div>
+              <div className="content_wrap">
+                <div className="toDoList">
+                  <ul className="pending">
+                    Pending
+                    {todos &&
+                      todos.map((todo, index) => {
+                        return (
+                          <li
+                            key={index}
+                            id={todo.id}
+                            name="todos"
+                            className="pending_li"
+                          >
+                            {index + 1}. {todo.text}
+                            <button
+                              className="cursor x_btn"
+                              onClick={onDeleteClick}
+                            >
+                              ❌
+                            </button>
+                            <button
+                              className="cursor f_btn"
+                              onClick={onMoveClick}
+                            >
+                              ✔
+                            </button>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                  <ul className="finished">
+                    Finished
+                    {finisheds &&
+                      finisheds.map((finished, index) => {
+                        return (
+                          <li
+                            key={index}
+                            id={finished.id}
+                            name="finisheds"
+                            className="finished_li"
+                          >
+                            {index + 1}. {finished.text}
+                            <button
+                              className="cursor x_btn"
+                              onClick={onDeleteClick}
+                            >
+                              ❌
+                            </button>
+                            <button
+                              className="cursor f_btn"
+                              onClick={onMoveClick}
+                            >
+                              ⏏
+                            </button>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </div>
+                <div className="movieViewer">
+                  <h2>Add Do it list!</h2>
+                  <div className="movieViewer_default" ref={movieDefault}>
+                    🙉
+                  </div>
+                  <iframe
+                    title="video"
+                    id="player1"
+                    className="movieViewer_video"
+                    width="450"
+                    height="252"
+                    src="https://www.youtube.com/embed/sXFfd9OL5Ao?autoplay=1&mute=0&loop=1&enablejsapi=1&playlist=sXFfd9OL5Ao"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                    ref={movieVideo}
+                  ></iframe>
+                </div>
+              </div>
             </div>
-            {/* 동영상 컨테이너 */}
-            <div className="movieViewer">
-              <h2>Add Do it list!</h2>
-              <div className="movieViewer_default">🙉</div>
-              {/* 동영상 */}
-              <iframe
-                title="video"
-                id="player1"
-                className="movieViewer_video"
-                width="450"
-                height="252"
-                src="https://www.youtube.com/embed/sXFfd9OL5Ao?mute=1&loop=1&enablejsapi=1&playlist=sXFfd9OL5Ao"
-                frameBorder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+            <div className="openCld">
+              <span>Calender</span>
             </div>
           </div>
         </div>
-        {/* 달력 버튼 */}
-        <div className="openCld">
-          <span>Calender</span>
-        </div>
-      </div>
-      <WriteList userObj={userObj} docObj={docObj} />
+      )}
     </>
   );
 };

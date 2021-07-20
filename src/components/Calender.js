@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const Calender = () => {
+const Calender = ({ setDateObj, dateObj }) => {
   const [initi, setIniti] = useState(null);
   const [init, setInit] = useState(false);
   const [calDate, setCalDate] = useState();
@@ -39,8 +39,8 @@ const Calender = () => {
       "Saturday",
     ],
     today: new Date(),
-    monForChange: new Date().getMonth(),
-    activeDate: new Date(),
+    activeDate: dateObj,
+    monForChange: dateObj.getMonth(),
     getFirstDay: (yy, mm) => new Date(yy, mm, 1),
     getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
     nextMonth: function () {
@@ -57,6 +57,13 @@ const Calender = () => {
       d.setMonth(this.monForChange - 1);
       this.monForChange = this.monForChange - 1;
       this.activeDate = d;
+      return d;
+    },
+    clickDate: function (click) {
+      let d = new Date();
+      d.setDate(click);
+      d.setMonth(this.monForChange);
+      setDateObj(d);
       return d;
     },
     addZero: (num) => (num < 10 ? "0" + num : num),
@@ -134,12 +141,14 @@ const Calender = () => {
       if (initi.activeDTag) {
         initi.activeDTag.classList.remove("day-active");
       }
+
       let day = Number(event.target.textContent);
       loadDate(day, event.target.cellIndex);
 
       event.target.classList.add("day-active");
+
       initi.activeDTag = event.target;
-      initi.activeDate.setDate(day);
+      initi.clickDate(day);
     }
   };
 
