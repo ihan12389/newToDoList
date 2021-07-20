@@ -72,6 +72,7 @@ const Home = ({ userObj }) => {
     setDateObj(value);
     setLoading(false);
   };
+  
   return (
     <>
       {loading && (

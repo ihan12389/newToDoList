@@ -9,7 +9,7 @@ import Navigation from "components/Navigation";
 const AppRouter = ({ userObj, refreshUser }) => {
   const num = Math.ceil((Math.random().toFixed(2) * 100) % 20) + 1;
   var sectionStyle = {
-    backgroundImage: `url(${process.env.PUBLIC_URL}img/${num}.jpg)`,
+    backgroundImage: `url(${process.env.PUBLIC_URL}/img/${num}.jpg)`,
   };
 
   return (
