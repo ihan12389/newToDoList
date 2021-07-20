@@ -38,7 +38,7 @@ const Calender = ({ setDateObj, dateObj, closeCalender }) => {
       "Friday",
       "Saturday",
     ],
-    today: new Date(),
+    today: dateObj,
     activeDate: dateObj,
     monForChange: dateObj.getMonth(),
     getFirstDay: (yy, mm) => new Date(yy, mm, 1),

@@ -112,10 +112,12 @@ const ShowList = ({ userObj, docObj, dateObj }) => {
     if (!showModal) {
       if (todos.length === 0 && finisheds.length === 0) {
         console.log("modal은 꺼있지만 영상은 정지");
-        movieVideo.current.contentWindow.postMessage(
-          '{"event":"command","func":"stopVideo","args":""}',
-          "*"
-        );
+        setTimeout(() => {
+          movieVideo.current.contentWindow.postMessage(
+            '{"event":"command","func":"stopVideo","args":""}',
+            "*"
+          );
+        }, 1000);
         movieDefault.current.classList.add("dp_block");
         movieVideo.current.classList.remove("dp_block");
       } else {

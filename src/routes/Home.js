@@ -33,9 +33,11 @@ const Home = ({ userObj }) => {
       .where("createDate", "==", dateObj.getDate())
       .onSnapshot((snapshot) => {
         if (snapshot.size === 0) {
+          console.log("snapshot없어요~", snapshot);
           dbService.collection("todos").add(initObj);
           setDocs([]);
         } else {
+          console.log("snapshot있어요~", snapshot);
           const docArray = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
@@ -66,23 +68,19 @@ const Home = ({ userObj }) => {
     }
   }, [loading]);
 
-  useEffect(() => {
+  const setHome = (value) => {
+    setDateObj(value);
     setLoading(false);
-    console.log(dateObj);
-    if (loading === false) {
-      initialize();
-    }
-    // document.body.style.backgroundImage = `url("src/img/${num}.jpg")`;
-  }, [dateObj]);
-
+  };
   return (
     <>
       {loading && (
         <>
           <div className="showContainer" ref={show}>
-            {docs.map((doc) => (
-              <ShowList userObj={userObj} docObj={doc} date={dateObj} />
-            ))}
+            {docs.map((doc) => {
+              console.log(docs);
+              return <ShowList userObj={userObj} docObj={doc} date={dateObj} />;
+            })}
           </div>
           <div className="openCld" onClick={openCalender} ref={open}>
             <span>Calender</span>
@@ -90,7 +88,7 @@ const Home = ({ userObj }) => {
           <div className="calContainer dp_none" ref={cal}>
             <Calender
               dateObj={dateObj}
-              setDateObj={(value) => setDateObj(value)}
+              setDateObj={(value) => setHome(value)}
               closeCalender={(value) => closeCalender()}
             />
           </div>
