@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { dbService } from "fbase";
 import WriteList from "components/WriteList";
 
-const ShowList = ({ userObj, docObj, dateObj }) => {
+const ShowList = ({ userObj, docObj }) => {
   const [todos, setTodos] = useState(docObj.text);
   const [finisheds, setFinisheds] = useState(docObj.finished);
   const [showModal, setShowModal] = useState(false);
@@ -156,11 +156,7 @@ const ShowList = ({ userObj, docObj, dateObj }) => {
     <>
       <div className="container">
         {showModal && (
-          <WriteList
-            userObj={userObj}
-            docObj={docObj}
-            offModal={(value) => offModal()}
-          />
+          <WriteList docObj={docObj} offModal={(value) => offModal()} />
         )}
         <h1 className="title">TO DO LIST TODAY!</h1>
         <div className="wrap" ref={movie}>
