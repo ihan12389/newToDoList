@@ -9,8 +9,8 @@ const WriteList = ({ docObj, offModal }) => {
   const modalVideo = useRef();
 
   const VIDEO_SRC_ARRAY = [
-    "https://www.youtube.com/embed/rEaU6IwH3fw?autoplay=1&loop=1&playlist=rEaU6IwH3fw",
-    "https://www.youtube.com/embed/sXFfd9OL5Ao?autoplay=1&loop=1&enablejsapi=1&playlist=sXFfd9OL5Ao",
+    "https://www.youtube.com/embed/rEaU6IwH3fw?&autoplay=1&loop=1&playlist=rEaU6IwH3fw",
+    "https://www.youtube.com/embed/sXFfd9OL5Ao?&autoplay=1&loop=1&enablejsapi=1&playlist=sXFfd9OL5Ao",
     "https://www.youtube.com/embed/sXFfd9OL5Ao?mute=1&loop=1&enablejsapi=1&playlist=sXFfd9OL5Ao",
   ];
 
@@ -38,7 +38,7 @@ const WriteList = ({ docObj, offModal }) => {
         className="modalViewer_video noselect"
         width="500"
         heigth="315"
-        src="https://www.youtube.com/embed/rEaU6IwH3fw?autoplay=1&loop=1&playlist=rEaU6IwH3fw"
+        src="https://www.youtube.com/embed/rEaU6IwH3fw?mute=1&autoplay=1&loop=1&playlist=rEaU6IwH3fw"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         frameBorder="0"
         allowFullScreen
